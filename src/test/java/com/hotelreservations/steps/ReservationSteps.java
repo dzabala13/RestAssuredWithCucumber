@@ -1,9 +1,13 @@
 package com.hotelreservations.steps;
 
+import com.hotelreservations.models.Booking;
+import com.hotelreservations.models.BookingDates;
 import com.hotelreservations.models.BookingResponse;
 import com.hotelreservations.services.ReservationService;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 
 public class ReservationSteps {
 
@@ -27,14 +31,21 @@ public class ReservationSteps {
         bookingResponse = reservationService.createBooking();
     }
 
-/*    @Then("Reservation was successfully created")
+   @Then("Reservation was successfully created")
     public void reservation_was_successfully_created() {
-        // Write code here that turns the phrase above into concrete actions
-    }
+
+       Assertions.assertEquals("daniel",bookingResponse.getBooking().getFirstname());
+       Assertions.assertEquals("Zabala",bookingResponse.getBooking().getLastname());
+       Assertions.assertEquals(2000,bookingResponse.getBooking().getTotalprice());
+       Assertions.assertTrue(bookingResponse.getBooking().isDepositpaid());
+       Assertions.assertEquals("dancing",bookingResponse.getBooking().getAdditionalneeds());
+
+   }
 
     @Then("User cancels the created reservation")
     public void user_cancels_the_created_reservation() {
-        // Write code here that turns the phrase above into concrete actions
-    }*/
+
+        reservationService.deleteReservation(auth,bookingResponse.getBookingid());
+    }
 
 }

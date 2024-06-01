@@ -41,6 +41,7 @@ public class ReservationService extends BaseTest{
         response.then()
                 .statusCode(200);
 
+        // deserialization
         return  response.as(BookingResponse.class);
     }
 
